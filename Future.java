@@ -17,6 +17,12 @@ public class Future {
 		this.days = days;
 	}
 	
+	public void trade() {
+		for(int i = 0; i<days;i++) {
+			newDay();
+		}
+	}
+	
 	/**
 	 * When it is a new day of trading, set a new price and update margins.
 	 */
@@ -33,15 +39,17 @@ public class Future {
 			buyerMargin += difference;
 			sellerMargin -= difference;
 		}
+		System.out.println("Buyer Margin: "+buyerMargin);
+		System.out.println("Seller Margin: "+sellerMargin);
 		
-		if (buyerMargin < marginLevel)
+		if (buyerMargin < MAINTENANCE_MARGIN) {
 			buyerAddedMar += marginLevel - buyerMargin;
-			System.out.println("Added "+buyerAddedMar+"to buyer margin account.");
+			System.out.println("Added $"+buyerAddedMar+" to buyer margin account.");
 			addToMargin(1);
-		
-		if(sellerMargin < marginLevel) {
+		}
+		if(sellerMargin < MAINTENANCE_MARGIN) {
 			sellerAddedMar += marginLevel - sellerMargin;
-			System.out.println("Added "+sellerAddedMar+"to seller margin account.");
+			System.out.println("Added $"+sellerAddedMar+" to seller margin account.");
 			addToMargin(0);
 		}
 		
