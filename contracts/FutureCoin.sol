@@ -10,4 +10,13 @@ contract FutureCoin{
     uint marginLevel;
     uint time;
 
+    constructor(uint margin, uint time) public{
+        sellerMargin = margin;
+        buyerMargin = margin;
+        marginLevel = margin;
+        time = time;
+        
+    }
+
+    // function 
 }
